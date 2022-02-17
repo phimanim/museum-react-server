@@ -11,6 +11,7 @@ const exhibitionSchema = new mongoose.Schema({
   begginingDate: Date,
   endDate: Date,
   imageUrl: String,
+  museum:{ type: mongoose.Schema.Types.ObjectId, ref: "Museum" },
 });
 
 module.exports = mongoose.model("Exhibition", exhibitionSchema);

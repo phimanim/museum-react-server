@@ -7,7 +7,9 @@ function isObjectId(id) {
 
 async function getExhibitions(req, res) {
   try {
-    const exhibitions = await Exhibition.find().populate("museum").lean();
+    const exhibitions = await Exhibition.find()
+    .populate("museum")
+    .lean();
     res.status(200).json(exhibitions).end();
   } catch (err) {
     res.status(400).json(err.message).end();
@@ -20,7 +22,9 @@ async function getExhibitionById(req, res) {
     if (!isObjectId(exhibitionId)) {
       res.status(400).json("Id not valid").end();
     }
-    const exhibition = await Exhibition.findById(exhibitionId).populate("museum").lean();
+    const exhibition = await Exhibition.findById(exhibitionId)
+    .populate("museum")
+    .lean();
     res.status(200).json(exhibition).end();
   } catch (err) {
     res.status(400).json(err.message).end();
