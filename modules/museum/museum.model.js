@@ -15,7 +15,7 @@ const museumSchema = new mongoose.Schema({
     required: false
   },
   phone: Number,
-  exhibitions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exhibition" }],
+  exhibition: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exhibition" }],
   imageUrl: {
     type: String,
     required: false
