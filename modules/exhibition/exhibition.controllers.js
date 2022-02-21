@@ -33,7 +33,7 @@ async function getExhibitionById(req, res) {
 
 async function createExhibition(req, res) {
   try {
-    const exhibition = await Exhibition.create(req.body);
+    const exhibition = await Exhibition.create(req.body).populate("museum");
     res.status(200).json(exhibition).end();
   } catch (err) {
     res.status(400).json(err.message).end();
