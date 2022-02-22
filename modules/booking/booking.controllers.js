@@ -40,6 +40,22 @@ async function createBooking(req, res) {
   }
 }
 
+// async function addDate(req, res) {
+//   try {
+//     const { petId } = req.params;
+
+//     await Date.create({
+//       pet: petId,
+//       user: req.session.currentUser._id,
+//     });
+
+//     res.redirect("/profile");
+//   } catch (error) {
+//     console.error("error", error.message);
+//     res.render("error", error);
+//   }
+// }
+
 async function updateBooking(req, res) {
   try {
     const { bookingId } = req.params;
