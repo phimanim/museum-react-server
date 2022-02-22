@@ -9,6 +9,7 @@ function museumRouter(app) {
   router
     .get(ROUTES.getMuseums, middlewares.isLoggedIn, controllers.getMuseums)
     .get(ROUTES.getMuseumById, middlewares.isLoggedIn, controllers.getMuseumById)
+    .get(ROUTES.addExhibitions, middlewares.isLoggedIn, controllers.addExhibitions)
     .post(ROUTES.createMuseum, middlewares.isLoggedIn, controllers.createMuseum)
     .put(ROUTES.updateMuseum, middlewares.isLoggedIn, controllers.updateMuseum)
     .delete(ROUTES.deleteMuseum, middlewares.isLoggedIn, controllers.deleteMuseum);

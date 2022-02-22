@@ -25,6 +25,7 @@ async function getExhibitionById(req, res) {
     const exhibition = await Exhibition.findById(exhibitionId)
     .populate("museum")
     .lean();
+    console.log("exhibition:", exhibition)
     res.status(200).json(exhibition).end();
   } catch (err) {
     res.status(400).json(err.message).end();

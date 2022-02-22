@@ -1,5 +1,6 @@
 const Museum = require("./museum.model");
 const mongoose = require("mongoose");
+const Exhibition = require("../exhibition/exhibition.model");
 
 function isObjectId(id) {
   return mongoose.Types.ObjectId.isValid(id);
@@ -7,9 +8,7 @@ function isObjectId(id) {
 
 async function getMuseums(req, res) {
   try {
-    const museums = await Museum.find()
-    .populate("exhibition")
-    .lean();
+    const museums = await Museum.find().populate("exhibition").lean();
     res.status(200).json(museums).end();
   } catch (err) {
     res.status(400).json(err.message).end();
@@ -23,8 +22,8 @@ async function getMuseumById(req, res) {
       res.status(400).json("Id not valid").end();
     }
     const museum = await Museum.findById(museumId)
-    .populate("exhibition")
-    .lean();
+      .populate("exhibition")
+      .lean();
     res.status(200).json(museum).end();
   } catch (err) {
     res.status(400).json(err.message).end();
@@ -69,10 +68,24 @@ async function deleteMuseum(req, res) {
   }
 }
 
+async function addExhibitions(req, res) {
+  try {
+    const { museumId } = req.params;
+    if (!isObjectId(museumId)) {
+      res.status(400).json("Id not valid").end();
+    }
+    const exhibition = await Exhibition.find({ museum: museumId }).lean();
+    res.status(200).json(exhibition).end();
+  } catch (err) {
+    res.status(400).json(err.message).end();
+  }
+}
+
 module.exports = {
   getMuseumById,
   getMuseums,
   updateMuseum,
   createMuseum,
   deleteMuseum,
+  addExhibitions,
 };

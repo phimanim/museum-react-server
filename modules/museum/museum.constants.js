@@ -4,5 +4,6 @@ module.exports = {
     createMuseum: "/museums",
     updateMuseum: "/museums/:museumId",
     deleteMuseum: "/museums/:museumId",
+    addExhibitions: "/museums/exhibitions/:museumId"
   };
   
