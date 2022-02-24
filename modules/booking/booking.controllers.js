@@ -8,8 +8,8 @@ function isObjectId(id) {
 async function getBookings(req, res) {
   try {
     const bookings = await Booking.find()
-    //.populate("exhibition")
-    .lean();
+      //.populate("exhibition")
+      .lean();
     res.status(200).json(bookings).end();
   } catch (err) {
     res.status(400).json(err.message).end();
@@ -23,8 +23,8 @@ async function getBookingById(req, res) {
       res.status(400).json("Id not valid").end();
     }
     const booking = await Booking.findById(bookingId)
-    //.populate("exhibition")
-    .lean();
+      //.populate("exhibition")
+      .lean();
     res.status(200).json(booking).end();
   } catch (err) {
     res.status(400).json(err.message).end();

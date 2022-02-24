@@ -1,7 +1,7 @@
 module.exports = {
     getBookings: "/bookings",
     getBookingById: "/bookings/:bookingId",
-    createBooking: "/exhibitions/:exhibitionId/booking",
+    createBooking: "/bookings",
     updateBooking: "/bookings/:bookingId",
     deleteBooking: "/bookings/:bookingId",
   };
