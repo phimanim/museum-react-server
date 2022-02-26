@@ -8,7 +8,7 @@ function isObjectId(id) {
 async function getBookings(req, res) {
   try {
     const bookings = await Booking.find()
-      //.populate("exhibition")
+      .populate("exhibition")
       .lean();
     res.status(200).json(bookings).end();
   } catch (err) {
@@ -23,7 +23,7 @@ async function getBookingById(req, res) {
       res.status(400).json("Id not valid").end();
     }
     const booking = await Booking.findById(bookingId)
-      //.populate("exhibition")
+      .populate("exhibition")
       .lean();
     res.status(200).json(booking).end();
   } catch (err) {
@@ -39,22 +39,6 @@ async function createBooking(req, res) {
     res.status(400).json(err.message).end();
   }
 }
-
-// async function addDate(req, res) {
-//   try {
-//     const { petId } = req.params;
-
-//     await Date.create({
-//       pet: petId,
-//       user: req.session.currentUser._id,
-//     });
-
-//     res.redirect("/profile");
-//   } catch (error) {
-//     console.error("error", error.message);
-//     res.render("error", error);
-//   }
-// }
 
 async function updateBooking(req, res) {
   try {

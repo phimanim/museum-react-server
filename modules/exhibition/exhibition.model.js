@@ -6,8 +6,8 @@ const exhibitionSchema = new mongoose.Schema({
     required: true
   },
   description: String,
-  artist: [String],
-  curator: [String],
+  artist: String,
+  curator: String,
   begginingDate: Date,
   endDate: Date,
   imageUrl: String,
