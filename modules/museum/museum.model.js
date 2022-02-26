@@ -1,24 +1,22 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const museumSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
-  coordinates:  {
-    type: Number,
-    required: false
-  },
+  latitude: { type: Number, required: true },
+  longitude: { type: Number, required: true },
   phone: Number,
   exhibition: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exhibition" }],
   imageUrl: {
     type: String,
-    required: false
+    required: false,
   },
 });
 
