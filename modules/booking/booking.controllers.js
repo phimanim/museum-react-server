@@ -1,5 +1,7 @@
 const Booking = require("./booking.model");
 const mongoose = require("mongoose");
+const User = require("../auth/user.model");
+
 
 function isObjectId(id) {
   return mongoose.Types.ObjectId.isValid(id);
@@ -7,9 +9,9 @@ function isObjectId(id) {
 
 async function getBookings(req, res) {
   try {
-    const bookings = await Booking.find()
-      .populate("exhibition")
-      .lean();
+    const userId = req.session.user._id;
+    const user = await User.findById(userId);
+    const bookings = await Booking.find({ "user": {$eq: user._id}}).populate("exhibition").lean();
     res.status(200).json(bookings).end();
   } catch (err) {
     res.status(400).json(err.message).end();
@@ -33,7 +35,10 @@ async function getBookingById(req, res) {
 
 async function createBooking(req, res) {
   try {
-    const booking = await Booking.create(req.body);
+    const booking = await Booking.create({
+      ...req.body,
+      user: req.session.user._id,
+    });
     res.status(200).json(booking).end();
   } catch (err) {
     res.status(400).json(err.message).end();
