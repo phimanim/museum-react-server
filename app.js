@@ -5,6 +5,7 @@ const bookingRouter = require("./modules/booking");
 const authRouter = require("./modules/auth");
 const filesRouter = require("./modules/files");
 const { connectDb, middlewares, sessionConfig } = require("./config");
+const likeRouter = require("./modules/like/like.routes");
 
 async function start() {
   try {
@@ -21,6 +22,7 @@ async function start() {
     museumRouter(app);
     bookingRouter(app);
     filesRouter(app);
+    likeRouter(app);
     app.listen(PORT, () => console.log(`Server running at: ${PORT}`));
   } catch (err) {
     console.log(err.message);
